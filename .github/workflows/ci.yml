@@ -41,6 +41,13 @@ jobs:
       with:
         go-version: '1.21.3'
 
+    # Install golang-migrate in order for our migrations to work
+    - name: install golang-migrate
+      run: |
+        curl -L https://github.com/golang-migrate/migrate/releases/download/v4.16.2/migrate.darwin-amd64.tar.gz | tar xvz
+        mv migrate.linux-amd64 /usr/local/bin/
+        which migrate
+
     # Run our custom make commands
     # Run migrations
     - name: Run Migrations
